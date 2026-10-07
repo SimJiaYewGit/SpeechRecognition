@@ -4,8 +4,8 @@ Install Git and Docker with Linux containers and the Compose plugin.
 No host Python or Node.js installation is needed to run the full application.
 
 ```powershell
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/SimJiaYewGit/SpeechRecognition.git
+cd SpeechRecognition
 docker compose up -d --build
 docker compose ps
 ```
