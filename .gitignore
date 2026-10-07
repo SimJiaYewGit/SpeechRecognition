@@ -1,0 +1,46 @@
+# Local configuration (keep shareable examples)
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+.venv-docs/
+tmp/pdfs/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# JavaScript and builds
+node_modules/
+.npm-cache/
+dist/
+build/
+coverage/
+*.log
+
+# Runtime data, models, and recordings
+backend/data/
+backend/.cache/
+uploads/
+transcripts/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.ogg
+
+# Editor/OS artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

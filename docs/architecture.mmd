@@ -1,0 +1,27 @@
+flowchart LR
+  user[User selects local MP3s] --> react[React UI: sequential batch, list, search]
+  react -->|Same-origin HTTP| vite[Vite development proxy]
+  vite -->|Native :5000 or Docker :8000| api
+  subgraph backend[Backend process / Docker container]
+    api[Flask routes + JSON validation]
+    store[Exclusive unique upload storage]
+    audio[MP3 decode, mono, 16 kHz]
+    whisper[Local Whisper Tiny CPU inference]
+    repo[SQLite repository]
+    api -->|POST /transcribe| store
+    store -->|Saved path; acquire inference lock| audio
+    audio --> whisper
+    whisper -->|Text; commit before 201 response| repo
+    api -->|GET /transcriptions and /search| repo
+    api -->|GET /health checks model and DB readiness| whisper
+  end
+  store --> uploads[(Retained MP3s: /data/uploads)]
+  repo --> db[(SQLite: /data/transcriptions.sqlite3)]
+  hf[Hugging Face: model assets only] -.->|Initial download / missing cache| cache[(Model cache: /models)]
+  cache -.->|Startup load into process memory| whisper
+  repo -->|JSON records via Flask + proxy| react
+  style hf fill:#fff3d6,stroke:#b7791f
+  style cache fill:#fff3d6,stroke:#b7791f
+  %% Solid arrows: runtime work/data. Dashed arrows: model provisioning/startup.
+  %% Data and model cache are separate named volumes in Compose.
+  %% No recording is sent to Hugging Face for transcription.

@@ -1,0 +1,12 @@
+# Allow only production source and dependency manifests into the build context.
+**
+!Dockerfile
+!.dockerignore
+!requirements.txt
+!requirements-docker.txt
+!gunicorn.conf.py
+!healthcheck.py
+!app/
+!app/**
+app/**/__pycache__/
+app/**/*.pyc

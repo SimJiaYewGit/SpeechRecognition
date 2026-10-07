@@ -1,0 +1,3 @@
+-r requirements.txt
+# Linux production server; not needed in the Windows development environment.
+gunicorn==23.0.0

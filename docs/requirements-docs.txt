@@ -1,0 +1,2 @@
+# Optional documentation tooling; install in a separate .venv-docs environment.
+reportlab==4.4.9

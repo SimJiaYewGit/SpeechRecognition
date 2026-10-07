@@ -1,0 +1,12 @@
+# Only the files needed for the reproducible frontend build enter the context.
+**
+!Dockerfile
+!.dockerignore
+!nginx.conf
+!package.json
+!package-lock.json
+!index.html
+!vite.config.js
+!vitest.config.js
+!src/
+!src/**
